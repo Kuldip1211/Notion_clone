@@ -10,14 +10,16 @@ function Newdocument() {
   const router = useRouter()
 
   const handleCreateNewDocument = async () => {
+    startTransition(true);
     const { docId } = await createNewDocument();
     router.push(`/doc/${docId}`);
+    startTransition(false);
   };
 
   return (
     <div>
       <Button onClick={handleCreateNewDocument} disabled={isPending}>
-        {isPending ? "...Creating" : "New Document"}
+        {isPending ? "...Creating" : "NewDocument"}
       </Button>
     </div>
   );
